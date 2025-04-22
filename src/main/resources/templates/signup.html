@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Регистрация</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <h1>Регистрация</h1>
+            <div class="auth-buttons">
+                <a th:href="@{/login}" class="btn">Войти</a>
+            </div>
+        </div>
+    </header>
+    <main>
+        <div class="form-container">
+            <form th:action="@{/signup}" method="post" th:object="${userDto}">
+                <div th:if="${param.signup != null}" class="success-message">
+                    Регистрация прошла успешно! Теперь вы можете войти.
+                </div>
+                
+                <div class="form-group">
+                    <label for="username">Имя пользователя:</label>
+                    <input type="text" id="username" th:field="*{username}" required>
+                    <span th:if="${#fields.hasErrors('username')}" th:errors="*{username}" class="error"></span>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" th:field="*{email}" required>
+                    <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="error"></span>
+                    <span th:if="${emailError}" th:text="${emailError}" class="error"></span>
+                </div>
+                
+                <div class="form-group">
+                    <label for="password">Пароль:</label>
+                    <input type="password" id="password" th:field="*{password}" required>
+                    <span th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="error"></span>
+                </div>
+                
+                <button type="submit" class="btn">Зарегистрироваться</button>
+            </form>
+            
+            <div class="login-link">
+                Уже есть аккаунт? <a th:href="@{/login}">Войдите</a>
+            </div>
+        </div>
+    </main>
+</body>
+</html>
