@@ -8,11 +8,10 @@
 <body>
     <header>
         <div class="header-content">
-            <h1>Добро пожаловать!</h1>
+            <h1>FindYourSeries</h1>
             <div class="auth-section">
                 <div th:if="${username}" class="user-info">
                     <span th:text="${username}" class="username"></span>
-                    <span th:text="${email}" class="email"></span>
                     <form th:action="@{/logout}" method="post" class="logout-form">
                         <button type="submit" class="btn logout-btn">Выйти</button>
                     </form>

@@ -1,6 +1,7 @@
 package com.example.recomendSeries.controller;
 
 
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -25,13 +26,19 @@ public class AuthController {
     }
 
     @GetMapping("/login")
-    public String loginForm(Model model) {
+    public String loginForm(Model model,Authentication authentication) {
+    	if (authentication != null && authentication.isAuthenticated()) {
+            return "redirect:/";
+        }
         model.addAttribute("loginDto", new LoginDto());
         return "login";
     }
 
     @GetMapping("/signup")
-    public String signupForm(Model model) {
+    public String signupForm(Model model,Authentication authentication) {
+    	if (authentication != null && authentication.isAuthenticated()) {
+            return "redirect:/";
+        }
         model.addAttribute("userDto", new UserDto());
         return "signup";
     }

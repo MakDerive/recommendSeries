@@ -1,6 +1,7 @@
 package com.example.recomendSeries.user;
 
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -13,8 +14,10 @@ import com.example.recomendSeries.dto.UserDto;
 @Service
 public class UserService implements UserDetailsService {
     private final UserRepository userRepository;
+    
     private final PasswordEncoder passwordEncoder;
-
+    
+    @Autowired
     public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
@@ -37,5 +40,6 @@ public class UserService implements UserDetailsService {
         user.setEmail(userDto.getEmail());
         user.setPassword(passwordEncoder.encode(userDto.getPassword()));
         userRepository.save(user);
+        
     }
 }
