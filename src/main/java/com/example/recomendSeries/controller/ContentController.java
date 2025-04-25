@@ -1,16 +1,24 @@
 package com.example.recomendSeries.controller;
 
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-
+import com.example.recomendSeries.series.Series;
 import com.example.recomendSeries.config.UserDetailsImpl;
+import com.example.recomendSeries.series.SeriesService;
 
 
 @Controller
 public class ContentController {
+	
+	@Autowired
+	SeriesService seriesService;
+	
     @GetMapping("/")
     public String home(Model model) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
@@ -19,6 +27,8 @@ public class ContentController {
             model.addAttribute("username", userDetails.getRealUsername());
             model.addAttribute("email", userDetails.getEmail());
         }
+        List<Series> series = seriesService.getSeries();
+        model.addAttribute("series",series);
         return "index";
     }
 }
