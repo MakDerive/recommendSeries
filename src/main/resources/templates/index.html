@@ -25,19 +25,46 @@
     </header>
     <main>
         <div class="content">
-            <!-- Лента текущих просмотров -->
-            
-
-            <!-- Лента рекомендаций (только для авторизованных) -->
-            <div th:if="${username}">
-                <section class="scroll-section recommendations">
-                    <h2>Рекомендуем вам</h2>
-                    <div class="scroll-container">
-                        <!-- Рекомендации будут здесь -->
+            <!-- Лента сериалов -->
+            <section class="series-carousel">
+                <button class="carousel-button prev" onclick="scrollCarousel(-1)">❮</button>
+                <div class="carousel-container">
+                    <div class="carousel-track" id="carouselTrack">
+                        <div class="carousel-slide" th:each="series : ${allSeries}">
+                            <img th:src="${series.seriesImgUrl}" alt="Series poster">
+                            <div class="series-info">
+                                <span class="series-name" th:text="${series.name}"></span>
+                                <span class="series-rating" th:text="${series.rating}"></span>
+                            </div>
+                        </div>
                     </div>
-                </section>
-            </div>
+                </div>
+                <button class="carousel-button next" onclick="scrollCarousel(1)">❯</button>
+            </section>
+
         </div>
     </main>
+
+    <script>
+    let currentIndex = 0;
+
+    function scrollCarousel(direction) {
+        const track = document.getElementById('carouselTrack');
+        const slides = document.querySelectorAll('.carousel-slide');
+        
+        currentIndex += direction;
+        
+        // Проверка границ
+        if (currentIndex < 0) {
+            currentIndex = 0;
+        } else if (currentIndex >= slides.length) {
+            currentIndex = slides.length - 1;
+        }
+
+        const slideWidth = slides[0].offsetWidth + 20; // Учитываем отступы
+        track.style.transform = `translateX(-${currentIndex * slideWidth}px)`;
+    }
+
+    </script>
 </body>
 </html>

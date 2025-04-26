@@ -11,6 +11,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface SeriesRepository extends JpaRepository<Series, Long> {
 	Optional<Series> findByName(String name);
-	@Query("select * from series")
-	List<Series> findAllSeries();
+	List<Series> findAll();
 }

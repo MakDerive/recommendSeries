@@ -35,21 +35,9 @@ public class Series {
     @Column(name = "series_img_url", unique = true, nullable = false, length = 512)
     private String seriesImgUrl;
     
-    @ManyToMany
-    @JoinTable(
-        name = "series_genres",
-        joinColumns = @JoinColumn(name = "series_id"),
-        inverseJoinColumns = @JoinColumn(name = "genre_id")
-    )
-    private Set<Genre> genres = new HashSet<>();
-    
     @Column(nullable = false, columnDefinition = "TEXT")
     private String description;
     
     @Column(nullable = false, precision = 3, scale = 1)
-    @DecimalMin("7.0") @DecimalMax("10.0")
     private BigDecimal rating;
-    
-    @Column(name = "release_date", nullable = false)
-    private LocalDate releaseDate;
 }

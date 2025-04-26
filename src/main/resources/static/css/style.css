@@ -1,16 +1,28 @@
+:root {
+    --primary-blue: #1e88e5;
+    --dark-blue: #1565c0;
+    --light-blue: #90caf9;
+    --dark-gray: #424242;
+    --medium-gray: #757575;
+    --light-gray: #e0e0e0;
+    --bg-color: #f5f5f5;
+    --text-dark: #212121;
+    --text-light: #ffffff;
+}
+
 body {
     font-family: 'Arial', sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #1a1a1a;
-    color: #ffffff;
+    background-color: var(--bg-color);
+    color: var(--text-dark);
 }
 
 /* Шапка */
 header {
-    background: #0a0a0a;
+    background: var(--dark-gray);
     padding: 1rem 0;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.5);
+    box-shadow: 0 2px 10px rgba(0,0,0,0.2);
     position: sticky;
     top: 0;
     z-index: 100;
@@ -26,7 +38,7 @@ header {
 }
 
 .header-content h1 {
-    color: #e50914;
+    color: var(--primary-blue);
     margin: 0;
     font-size: 1.8rem;
 }
@@ -46,8 +58,9 @@ main {
 .scroll-section h2 {
     margin-bottom: 1rem;
     padding-left: 0.5rem;
-    color: #ffffff;
+    color: var(--dark-gray);
     font-size: 1.5rem;
+    border-left: 4px solid var(--primary-blue);
 }
 
 .scroll-container {
@@ -56,7 +69,7 @@ main {
     gap: 1rem;
     padding: 1rem 0.5rem;
     scrollbar-width: thin;
-    scrollbar-color: #e50914 #333;
+    scrollbar-color: var(--primary-blue) var(--light-gray);
 }
 
 .scroll-container::-webkit-scrollbar {
@@ -64,12 +77,12 @@ main {
 }
 
 .scroll-container::-webkit-scrollbar-track {
-    background: #333;
+    background: var(--light-gray);
     border-radius: 4px;
 }
 
 .scroll-container::-webkit-scrollbar-thumb {
-    background-color: #e50914;
+    background-color: var(--primary-blue);
     border-radius: 4px;
 }
 
@@ -77,29 +90,30 @@ main {
     flex: 0 0 auto;
     width: 200px;
     height: 120px;
-    background: #2a2a2a;
+    background: var(--light-gray);
     border-radius: 8px;
     padding: 1rem;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.3);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+    border: 1px solid var(--medium-gray);
 }
 
 .content-block:hover {
-    transform: scale(1.05);
-    box-shadow: 0 5px 15px rgba(0,0,0,0.5);
-    background: #333;
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    background: var(--text-light);
 }
 
 .series-title {
     font-weight: bold;
     font-size: 1.1rem;
-    color: #ffffff;
+    color: var(--dark-gray);
     margin-bottom: 0.5rem;
 }
 
 .series-info {
     font-size: 0.9rem;
-    color: #b3b3b3;
+    color: var(--medium-gray);
 }
 
 /* Стили для аутентификации */
@@ -116,14 +130,14 @@ main {
 
 .username {
     font-weight: bold;
-    color: #ffffff;
+    color: var(--text-light);
 }
 
 .btn {
     display: inline-block;
     padding: 0.5rem 1rem;
-    background: #e50914;
-    color: white;
+    background: var(--primary-blue);
+    color: var(--text-light);
     text-decoration: none;
     border-radius: 4px;
     border: none;
@@ -133,35 +147,60 @@ main {
 }
 
 .btn:hover {
-    background: #b2070f;
+    background: var(--dark-blue);
 }
 
 .logout-btn {
-    background: #333;
+    background: var(--medium-gray);
 }
 
 .logout-btn:hover {
-    background: #444;
+    background: var(--dark-gray);
 }
 
 .auth-buttons {
     display: flex;
     gap: 1rem;
 }
-
-/* Специфичные стили для разделов */
-.now-watching .content-block {
-    background: #e50914;
+.content {
+    width: 80%;
+    margin: 0 auto;
 }
 
-.now-watching .series-title {
-    color: #fff;
+.series-carousel {
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
 }
 
-.now-watching .series-info {
-    color: #ffb3b3;
+.carousel-container {
+    width: 100%;
+    overflow: hidden;
 }
 
-.new-releases .content-block {
-    background: #2a2a2a;
+.carousel-track {
+    display: flex;
+    transition: transform 0.5s ease;
+}
+
+.carousel-slide {
+    min-width: 200px; /* Настройте ширину под ваши изображения */
+    margin: 0 10px;
+    text-align: center;
+}
+
+.series-info {
+    margin-top: 5px;
+}
+
+.carousel-button {
+    background-color: transparent;
+    border: none;
+    font-size: 2em;
+    cursor: pointer;
+}
+
+.carousel-button:focus {
+    outline: none;
 }

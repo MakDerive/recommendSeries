@@ -27,8 +27,8 @@ public class ContentController {
             model.addAttribute("username", userDetails.getRealUsername());
             model.addAttribute("email", userDetails.getEmail());
         }
-        List<Series> series = seriesService.getSeries();
-        model.addAttribute("series",series);
+        List<Series> allSeries = seriesService.getSeries();
+        model.addAttribute("allSeries",allSeries);
         return "index";
     }
 }
