@@ -10,6 +10,13 @@
     --text-light: #ffffff;
 }
 
+img {
+    max-width: 100%;
+    max-height: 240px; /* Ограничение по высоте */
+    width: auto; /* Автоматическое изменение ширины */
+    height: auto; /* Автоматическое изменение высоты */
+}
+
 body {
     font-family: 'Arial', sans-serif;
     margin: 0;
