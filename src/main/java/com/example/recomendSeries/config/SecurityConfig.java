@@ -32,7 +32,11 @@ public class SecurityConfig {
             .logout(logout -> logout
                 .logoutSuccessUrl("/")
                 .permitAll()
-            );
+            )
+            .csrf(csrf -> csrf
+                    .ignoringRequestMatchers("/api/series/**") // Отключаем CSRF для API (осторожно!)
+                    );
+        
         return http.build();
     }
 

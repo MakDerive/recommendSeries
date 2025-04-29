@@ -16,8 +16,11 @@ import com.example.recomendSeries.series.SeriesService;
 @Controller
 public class ContentController {
 	
-	@Autowired
 	SeriesService seriesService;
+	
+	public ContentController(SeriesService seriesService) {
+		this.seriesService = seriesService;
+	}
 	
     @GetMapping("/")
     public String home(Model model) {
