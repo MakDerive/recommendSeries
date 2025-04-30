@@ -18,6 +18,10 @@ public class SeriesService {
 		return series;
 	}
 	
+	public List<Series> searchSeries(String query) {
+	    return seriesRepository.findByNameContainingIgnoreCase(query);
+	}
+	
 	
 
 }

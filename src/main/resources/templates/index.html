@@ -9,7 +9,11 @@
     <header>
         <div class="header-content">
             <h1>FindYourSeries</h1>
-            <div class="auth-section">
+			<nav class="main-nav">
+				<a th:href="@{/}" class="nav-link">Главная</a> 
+				<a th:href="@{/search}" class="nav-link">Поиск</a>
+			</nav>
+			<div class="auth-section">
                 <div th:if="${username}" class="user-info">
                     <span th:text="${username}" class="username"></span>
                     <form th:action="@{/logout}" method="post" class="logout-form">
@@ -21,6 +25,7 @@
                     <a th:href="@{/signup}" class="btn">Зарегистрироваться</a>
                 </div>
             </div>
+            
         </div>
     </header>
     <main>
@@ -51,7 +56,6 @@
                 </div>
                 <button class="carousel-button next" onclick="moveCarousel(1)">❯</button>
             </section>
-
 			<div th:if="${#authentication.principal != 'anonymousUser'}">
 				<h2>Рекомендация для вас</h2>
 				<section th:if="${#lists.size(allSeries) >= 10}" class="series-carousel">

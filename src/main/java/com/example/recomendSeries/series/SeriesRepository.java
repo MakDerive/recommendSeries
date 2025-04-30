@@ -12,4 +12,5 @@ import org.springframework.stereotype.Repository;
 public interface SeriesRepository extends JpaRepository<Series, Long> {
 	Optional<Series> findByName(String name);
 	List<Series> findAll();
+	List<Series> findByNameContainingIgnoreCase(String name);
 }
