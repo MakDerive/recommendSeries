@@ -9,6 +9,10 @@
     <header>
         <div class="header-content">
             <h1>FindYourSeries</h1>
+            <nav class="main-nav">
+				<a th:href="@{/}" class="nav-link">Главная</a> 
+				<a th:href="@{/search}" class="nav-link">Поиск</a>
+			</nav>
             <div class="auth-section">
                 <div th:if="${username}" class="user-info">
                     <span th:text="${username}" class="username"></span>
